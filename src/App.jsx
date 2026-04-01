@@ -33,17 +33,22 @@ const people = [
   {
     name: "Cid Rodrigues",
     role: "Incorporadora",
-    bio: "Visão de longo prazo, execução consistente e sensibilidade para projetos que permanecem relevantes com o tempo.",
+    bio: "Engenheiro com mais de 35 anos de experiência em grandes projetos, liderando equipes multidisciplinares na indústria siderúrgica. Atuou na USIMINAS com foco em inovação, automação e eficiência. Hoje leva essa visão estratégica ao desenvolvimento de empreendimentos com alto padrão técnico e planejamento inteligente.",
+    image:
+      "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/social-01.png?raw=true",
   },
   {
     name: "Engenheiro Responsável",
     role: "Engenharia",
-    bio: "Precisão técnica, eficiência construtiva e compromisso com desempenho, segurança e durabilidade.",
+    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    image: null,
   },
   {
-    name: "Arquiteto",
+    name: "Fernandes Neto",
     role: "Arquitetura",
-    bio: "Arquitetura pensada para luz, respiro, proporção e uso real — com estética silenciosa e atemporal.",
+    bio: "Arquiteto com 30 anos de experiência no desenvolvimento e coordenação de projetos de diferentes escalas. Especialista em BIM, compatibilização interdisciplinar e acessibilidade, atua com foco em eficiência, conformidade técnica e desenho universal.",
+    image:
+      "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/social-02.png?raw=true",
   },
 ];
 
@@ -69,24 +74,24 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-[#eef1e8] text-[#1f281b] antialiased selection:bg-[#2a3b23] selection:text-white">
       <section className="relative min-h-screen overflow-hidden bg-[#141b11] text-white">
-        <div className="absolute inset-0">
+        <motion.div
+          aria-hidden="true"
+          className="absolute inset-0 will-change-transform"
+          initial={{ y: -30, scale: 1.04 }}
+          whileInView={{ y: 30, scale: 1.08 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 1.8, ease: "easeOut" }}
+        >
           <img
             src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/hero-bg.jpg?raw=true"
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-screen"
+            className="absolute inset-0 h-full w-full object-cover opacity-36 mix-blend-overlay"
           />
-          <video
-            className="h-full w-full object-cover opacity-18 mix-blend-lighten"
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(219,227,207,0.18),transparent_30%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,27,17,0.42)_0%,rgba(42,59,35,0.52)_32%,rgba(29,40,24,0.74)_68%,rgba(20,27,17,0.9)_100%)]" />
-          <div className="absolute inset-0 bg-[#2a3b23]/48 mix-blend-multiply" />
-        </div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(219,227,207,0.22),transparent_32%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,27,17,0.38)_0%,rgba(42,59,35,0.5)_32%,rgba(29,40,24,0.72)_68%,rgba(20,27,17,0.92)_100%)]" />
+          <div className="absolute inset-0 bg-[#2a3b23]/50 mix-blend-multiply" />
+        </motion.div>
 
         <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col px-6 pb-10 pt-8 md:px-10 lg:px-16">
           <div className="mb-auto flex items-center justify-between">
@@ -140,33 +145,70 @@ export default function LandingPage() {
       </section>
 
       <section className="relative border-b border-[#626d46]/10 bg-white">
-        <div className="mx-auto max-w-5xl px-6 py-24 text-center md:px-10 lg:px-16 lg:py-32">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={fadeUp}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-full bg-[#eef1e8] shadow-[0_8px_30px_rgba(42,59,35,0.08)]">
-              <Trees className="h-7 w-7 text-[#626d46]" />
-            </div>
-            <p className="mx-auto max-w-4xl text-3xl font-semibold tracking-[-0.04em] md:text-5xl md:leading-[1.05]">
-              Mais de 40 anos de natureza fazem parte do seu novo endereço.
-            </p>
-            <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-[#3d4a31]/90">
-              Craibeira Terrazzo, um empreendimento que já nasce com uma grande
-              história.
-            </p>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#4f5b3b]/80">
-              Porque viver bem também é respeitar o que permanece.
-            </p>
-          </motion.div>
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 lg:px-16 lg:py-28">
+          <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeUp}
+              transition={{ duration: 0.7 }}
+              className="relative overflow-hidden rounded-[36px] shadow-[0_20px_80px_rgba(42,59,35,0.08)]"
+            >
+              <img
+                src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/craibeira-terrazo.png?raw=true"
+                alt="Craibeira Terrazzo e sua área verde histórica"
+                className="block w-full h-auto object-contain"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#141b11]/18 to-transparent" />
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeUp}
+              transition={{ duration: 0.7, delay: 0.08 }}
+              className="text-left lg:pl-4"
+            >
+              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#eef1e8] shadow-[0_8px_30px_rgba(42,59,35,0.08)]">
+                <Trees className="h-7 w-7 text-[#626d46]" />
+              </div>
+              <p className="max-w-4xl text-3xl font-semibold tracking-[-0.04em] md:text-5xl md:leading-[1.05]">
+                Mais de 40 anos de natureza fazem parte do seu novo endereço.
+              </p>
+              <p className="mt-8 max-w-3xl text-lg leading-8 text-[#3d4a31]/90">
+                Craibeira Terrazzo, um empreendimento que já nasce com uma
+                grande história.
+              </p>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-[#4f5b3b]/80">
+                Porque viver bem também é respeitar o que permanece.
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      <section className="bg-[#eef1e8]">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 lg:px-16 lg:py-32">
+      <section className="relative overflow-hidden bg-[#eef1e8]">
+        <motion.div
+          aria-hidden="true"
+          className="absolute inset-0 will-change-transform"
+          initial={{ y: -20, scale: 1.04 }}
+          whileInView={{ y: 20, scale: 1.08 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 1.8, ease: "easeOut" }}
+        >
+          <img
+            src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/experience.jpg?raw=true"
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover opacity-32 mix-blend-overlay"
+          />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(219,227,207,0.24),transparent_34%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(238,241,232,0.55)_0%,rgba(238,241,232,0.45)_45%,rgba(238,241,232,0.6)_100%)]" />
+          <div className="absolute inset-0 bg-[#dfe7d4]/36 mix-blend-multiply" />
+        </motion.div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 md:px-10 lg:px-16 lg:py-32">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -184,7 +226,7 @@ export default function LandingPage() {
           </motion.div>
 
           <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="rounded-[36px] bg-white p-8 shadow-[0_20px_80px_rgba(42,59,35,0.08)] md:p-10">
+            <div className="rounded-[36px] bg-white/70 backdrop-blur-md p-8 shadow-[0_20px_80px_rgba(42,59,35,0.08)] md:p-10">
               <div className="grid gap-4 md:grid-cols-2">
                 {features.map((item, i) => (
                   <motion.div
@@ -194,7 +236,7 @@ export default function LandingPage() {
                     viewport={{ once: true, amount: 0.3 }}
                     variants={fadeUp}
                     transition={{ duration: 0.5, delay: i * 0.06 }}
-                    className="rounded-[28px] border border-[#626d46]/12 bg-[#f7f9f2] p-6"
+                    className="rounded-[28px] border border-[#626d46]/12 bg-white/60 backdrop-blur-md p-6"
                   >
                     <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-[#dbe3cf]">
                       <SunMedium className="h-5 w-5 text-[#3d4a31]/90" />
@@ -308,9 +350,7 @@ export default function LandingPage() {
               Rooftop
             </p>
             <h2 className="mt-4 text-4xl font-semibold tracking-[-0.05em] md:text-6xl md:leading-[1.02]">
-              A cidade continua lá fora.
-              <br />
-              Aqui em cima, o tempo desacelera.
+              A cidade continua lá fora. Aqui em cima, o tempo desacelera.
             </h2>
             <p className="mt-6 max-w-xl text-lg leading-8 text-[#e6eddc]/82">
               Piscina, academia, espaço gourmet e áreas pensadas para viver —
@@ -329,17 +369,68 @@ export default function LandingPage() {
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="relative h-[520px] rounded-[40px] border border-[#dbe3cf]/20 bg-[radial-gradient(circle_at_top,rgba(219,227,207,0.16),transparent_35%),linear-gradient(180deg,#31402a,#1d2818)] p-5 shadow-[0_30px_100px_rgba(20,28,16,0.42)]"
+            className="relative rounded-[40px] border border-[#dbe3cf]/20 bg-[radial-gradient(circle_at_top,rgba(219,227,207,0.16),transparent_35%),linear-gradient(180deg,#31402a,#1d2818)] p-5 shadow-[0_30px_100px_rgba(20,28,16,0.42)]"
           >
-            <div className="grid h-full gap-4 md:grid-cols-[1.1fr_0.9fr]">
-              <div className="rounded-[32px] bg-[#ffffff14] backdrop-blur-sm" />
-              <div className="grid gap-4">
-                <div className="rounded-[28px] bg-[#ffffff14] backdrop-blur-sm" />
-                <div className="rounded-[28px] bg-[#ffffff14] backdrop-blur-sm" />
+            <div className="grid gap-4">
+              <div className="grid h-48 gap-4 md:h-64 md:grid-cols-[1.1fr_0.9fr]">
+                <div className="relative group overflow-hidden rounded-[32px]">
+                  <img
+                    src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/gallery-01.png?raw=true"
+                    alt="Rooftop Craibeira Terrazzo"
+                    className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition duration-300 group-hover:opacity-80" />
+                </div>
+
+                <div className="grid h-full grid-rows-2 gap-4">
+                  <div className="relative group overflow-hidden rounded-[28px]">
+                    <img
+                      src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/gallery-02.png?raw=true"
+                      alt="Ambiente rooftop Craibeira Terrazzo"
+                      className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition duration-300 group-hover:opacity-80" />
+                  </div>
+
+                  <div className="relative group overflow-hidden rounded-[28px]">
+                    <img
+                      src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/gallery-03.png?raw=true"
+                      alt="Área de lazer Craibeira Terrazzo"
+                      className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition duration-300 group-hover:opacity-80" />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="absolute bottom-6 left-6 rounded-full border border-[#dbe3cf]/25 bg-[#dbe3cf]/10 px-4 py-2 text-sm text-[#eef4e8]/90 backdrop-blur-md">
-              Piscina • Academia • Gourmet • Vista
+
+              <div className="mt-4 grid gap-4 md:grid-cols-3">
+                <div className="relative group overflow-hidden rounded-[28px]">
+                  <img
+                    src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/gallery-04.png?raw=true"
+                    alt="Piscina Craibeira Terrazzo"
+                    className="block h-24 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-32"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition duration-300 group-hover:opacity-80" />
+                </div>
+
+                <div className="relative group overflow-hidden rounded-[28px]">
+                  <img
+                    src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/gallery-05.png?raw=true"
+                    alt="Espaço gourmet Craibeira Terrazzo"
+                    className="block h-24 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-32"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition duration-300 group-hover:opacity-80" />
+                </div>
+
+                <div className="relative group overflow-hidden rounded-[28px]">
+                  <img
+                    src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/gallery-06.png?raw=true"
+                    alt="Vista rooftop Craibeira Terrazzo"
+                    className="block h-24 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-32"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition duration-300 group-hover:opacity-80" />
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -367,24 +458,42 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-[#eef1e8]">
-        <div className="mx-auto max-w-6xl px-6 py-24 md:px-10 lg:px-16 lg:py-30">
+      <section className="relative overflow-hidden bg-[#eef1e8]">
+        <motion.div
+          aria-hidden="true"
+          className="absolute inset-0 will-change-transform"
+          initial={{ y: -20, scale: 1.04 }}
+          whileInView={{ y: 20, scale: 1.08 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 1.8, ease: "easeOut" }}
+        >
+          <img
+            src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/oportunity.jpg?raw=true"
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-overlay"
+          />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(219,227,207,0.22),transparent_34%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(238,241,232,0.55)_0%,rgba(238,241,232,0.45)_45%,rgba(238,241,232,0.6)_100%)]" />
+          <div className="absolute inset-0 bg-[#dfe7d4]/34 mix-blend-multiply" />
+        </motion.div>
+
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-24 md:px-10 lg:px-16 lg:py-30">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeUp}
             transition={{ duration: 0.7 }}
-            className="rounded-[40px] bg-white p-10 text-center shadow-[0_24px_80px_rgba(42,59,35,0.08)] md:p-16"
+            className="rounded-[40px] bg-white/70 backdrop-blur-md p-10 text-center shadow-[0_24px_80px_rgba(42,59,35,0.08)] md:p-16"
           >
             <p className="text-sm font-medium uppercase tracking-[0.22em] text-[#626d46]/75">
               Oportunidade limitada
             </p>
             <div className="mt-4 text-5xl font-semibold tracking-[-0.06em] text-[#2a3b23] md:text-7xl">
-              56
+              56 unidades
             </div>
             <p className="mt-2 text-2xl font-medium tracking-[-0.03em] text-[#1f281b] md:text-3xl">
-              unidades • 2 e 3 quartos
+              2 e 3 quartos
             </p>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#4f5b3b]/85">
               Um projeto único. Uma oportunidade que não se repete.
@@ -409,7 +518,7 @@ export default function LandingPage() {
             className="mb-14 text-center"
           >
             <p className="text-sm font-medium uppercase tracking-[0.22em] text-[#626d46]/75">
-              Prova social
+              Quem faz o Craibeira Terrazzo
             </p>
             <h2 className="mx-auto mt-4 max-w-4xl text-4xl font-semibold tracking-[-0.05em] md:text-6xl md:leading-[1.04]">
               Um projeto pensado por quem entende que morar bem vai além do
@@ -417,7 +526,7 @@ export default function LandingPage() {
             </h2>
           </motion.div>
 
-          <div className="grid items-stretch gap-6 md:grid-cols-3">
+          <div className="grid items-start gap-6 md:grid-cols-3">
             {people.map((person, i) => (
               <motion.div
                 key={person.name}
@@ -430,7 +539,15 @@ export default function LandingPage() {
               >
                 <div className="flex h-full flex-col overflow-hidden rounded-[32px] border border-[#626d46]/12 bg-[#f7f9f2] shadow-[0_16px_50px_rgba(42,59,35,0.08)]">
                   <div className="flex h-full flex-col p-0">
-                    <div className="h-72 bg-[linear-gradient(180deg,#c7d0bc,#8b9770)]" />
+                    {person.image ? (
+                      <img
+                        src={person.image}
+                        alt={person.name}
+                        className="block h-[340px] w-full object-cover object-top"
+                      />
+                    ) : (
+                      <div className="h-[340px] bg-[linear-gradient(180deg,#c7d0bc,#8b9770)]" />
+                    )}
                     <div className="flex flex-1 flex-col p-8">
                       <p className="text-2xl font-semibold tracking-[-0.03em] text-[#1f281b]">
                         {person.name}
