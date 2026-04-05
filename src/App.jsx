@@ -7,7 +7,7 @@ import {
   Building2,
   Phone,
 } from "lucide-react";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -15,11 +15,31 @@ const fadeUp = {
 };
 
 const features = [
-  "Ambientes amplos e integrados",
-  "Ventilação cruzada e iluminação natural em todos os cômodos",
-  "Varanda gourmet pensada para momentos reais",
-  "Rooftop com vista, lazer e respiro",
-  "Espaços que funcionam na prática, não só na estética",
+  {
+    title: "Ambientes amplos e integrados",
+    image:
+      "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/living-01.jpg?raw=true",
+  },
+  {
+    title: "Ventilação cruzada e iluminação natural em todos os cômodos",
+    image:
+      "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/living-02.jpg?raw=true",
+  },
+  {
+    title: "Varanda gourmet pensada para momentos reais",
+    image:
+      "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/living-03.jpg?raw=true",
+  },
+  {
+    title: "Rooftop com vista, lazer e respiro",
+    image:
+      "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/living-04.jpg?raw=true",
+  },
+  {
+    title: "Espaços que funcionam na prática, não só na estética",
+    image:
+      "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/living-05.jpg?raw=true",
+  },
 ];
 
 const savings = [
@@ -27,6 +47,29 @@ const savings = [
   "Infraestrutura para energia solar nas áreas comuns",
   "Elevador com alta eficiência energética",
   "Consumo inteligente em toda operação do condomínio",
+];
+
+const techGallery = [
+  {
+    title: "Portaria remota com redução de condomínio",
+    image:
+      "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/tec-01.jpg?raw=true",
+  },
+  {
+    title: "Infraestrutura para energia solar nas áreas comuns",
+    image:
+      "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/tec-02.jpg?raw=true",
+  },
+  {
+    title: "Elevador com alta eficiência energética",
+    image:
+      "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/tec-03.jpg?raw=true",
+  },
+  {
+    title: "Consumo inteligente em toda operação do condomínio",
+    image:
+      "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/tec-04.jpg?raw=true",
+  },
 ];
 
 const people = [
@@ -38,10 +81,11 @@ const people = [
       "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/social-01.png?raw=true",
   },
   {
-    name: "Engenheiro Responsável",
+    name: "Leonardo Honório Filho",
     role: "Engenharia",
-    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-    image: null,
+    bio: "Engenheiro civil com 40 anos de experiência, liderando construtoras renomadas e gerenciando centenas de obras, com mais de 1 milhão de m² construídos. Atua com forte foco em planejamento, gestão e qualidade construtiva, conduzindo empreendimentos de grande porte com rigor técnico e consistência.",
+    image:
+      "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/social-03.png?raw=true",
   },
   {
     name: "Fernandes Neto",
@@ -54,6 +98,26 @@ const people = [
 
 export default function LandingPage() {
   const whatsappLink = "https://wa.me/558381759338";
+  const featuresCarouselRef = useRef(null);
+  const rooftopCarouselRef = useRef(null);
+  const techCarouselRef = useRef(null);
+  const [activeFeature, setActiveFeature] = useState(0);
+  const [activeRooftop, setActiveRooftop] = useState(0);
+  const [activeTech, setActiveTech] = useState(0);
+
+  const scrollCarousel = (ref, direction) => {
+    const el = ref.current;
+    if (!el) return;
+    const slideWidth = el.clientWidth;
+    el.scrollBy({ left: direction * slideWidth, behavior: "smooth" });
+  };
+
+  const updateActiveSlide = (ref, setter) => {
+    const el = ref.current;
+    if (!el) return;
+    const index = Math.round(el.scrollLeft / el.clientWidth);
+    setter(index);
+  };
 
   useEffect(() => {
     let link = document.querySelector("link[rel='icon']");
@@ -112,7 +176,7 @@ export default function LandingPage() {
             animate="visible"
             variants={fadeUp}
             transition={{ duration: 0.8 }}
-            className="mx-auto flex max-w-4xl flex-1 flex-col items-center justify-center text-center"
+            className="mx-auto flex max-w-4xl flex-1 flex-col items-center justify-center text-left md:text-center"
           >
             <div className="mb-6 rounded-full border border-[#dbe3cf]/25 bg-[#dbe3cf]/10 px-4 py-2 text-xs uppercase tracking-[0.18em] text-[#f7faf4]/95 backdrop-blur-md">
               Natureza, conforto e inteligência
@@ -120,7 +184,7 @@ export default function LandingPage() {
             <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.06em] md:text-7xl lg:text-[92px] lg:leading-[0.98]">
               Viva no seu tempo.
             </h1>
-            <div className="mt-6 w-full max-w-2xl rounded-[28px] border border-white/15 bg-[rgba(20,27,17,0.38)] p-6 text-center shadow-[0_20px_80px_rgba(0,0,0,0.18)] backdrop-blur-md md:p-8">
+            <div className="mt-6 w-full max-w-2xl rounded-[28px] border border-white/15 bg-[rgba(20,27,17,0.22)] p-6 text-left md:text-center shadow-[0_20px_80px_rgba(0,0,0,0.08)] backdrop-blur-md md:p-8">
               <p className="text-base leading-7 text-[#eef4e8]/92 md:text-xl md:leading-8">
                 Um refúgio urbano onde natureza, conforto e inteligência
                 convivem em equilíbrio.
@@ -195,24 +259,9 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#eef1e8]">
-        <motion.div
-          aria-hidden="true"
-          className="absolute inset-0 will-change-transform"
-          initial={{ y: -20, scale: 1.04 }}
-          whileInView={{ y: 20, scale: 1.08 }}
-          viewport={{ once: false, amount: 0.1 }}
-          transition={{ duration: 1.8, ease: "easeOut" }}
-        >
-          <div className="absolute inset-0">
-            <img
-              src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/experience.jpg?raw=true"
-              alt=""
-              className="block h-full w-full object-cover object-center md:object-center"
-            />
-          </div>
-          <div className="absolute inset-x-0 top-0 h-[34%] bg-[linear-gradient(180deg,rgba(20,27,17,0.55)_0%,rgba(20,27,17,0.25)_50%,transparent_100%)]" />
-        </motion.div>
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#f3f6ee_0%,#dfe7d4_100%)]">
+        {/* subtle grain */}
+        <div className="pointer-events-none absolute inset-0 opacity-[0.06] mix-blend-multiply bg-[url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\'><filter id=\'n\'><feTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'2\' stitchTiles=\'stitch\'/></filter><rect width=\'100%\' height=\'100%\' filter=\'url(%23n)\' opacity=\'0.6\'/></svg>')]" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 md:px-10 lg:px-16 lg:py-32">
           <motion.div
@@ -221,21 +270,54 @@ export default function LandingPage() {
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
             transition={{ duration: 0.7 }}
-            className="mb-14 text-center"
+            className="mb-14 text-left md:text-center"
           >
-            <p className="text-sm font-medium uppercase tracking-[0.22em] text-white/70">
+            <p className="text-sm font-medium uppercase tracking-[0.22em] text-[#626d46]/75">
               Experiência de morar
             </p>
-            <h2 className="mx-auto mt-4 max-w-4xl text-4xl font-semibold tracking-[-0.05em] text-white md:text-6xl md:leading-[1.02]">
+            <h2 className="mx-auto mt-4 max-w-4xl text-4xl font-semibold tracking-[-0.05em] text-[#1f281b] md:text-6xl md:leading-[1.02]">
               Mais do que morar. É viver melhor todos os dias.
             </h2>
           </motion.div>
 
           <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="rounded-[36px] bg-white/30 backdrop-blur-xl p-8 shadow-[0_25px_100px_rgba(20,28,16,0.18)] ring-1 ring-white/20 md:p-10 relative overflow-hidden">
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.25),transparent_40%)] opacity-40" />
-              <div className="md:hidden">
-                <div className="-mx-1 flex snap-x snap-mandatory gap-4 overflow-x-auto px-1 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={fadeUp}
+              transition={{ duration: 0.7, delay: 0.05 }}
+              className="relative rounded-[36px] border border-white/15 bg-white/10 backdrop-blur-xl p-5 shadow-[0_25px_100px_rgba(0,0,0,0.18)] ring-1 ring-white/10 overflow-hidden"
+            >
+              <div className="relative">
+                {activeFeature > 0 && (
+                  <button
+                    onClick={() => scrollCarousel(featuresCarouselRef, -1)}
+                    className="absolute left-3 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/45 text-[#1d2818]/70 shadow-sm backdrop-blur-md transition hover:bg-white/60 md:flex"
+                    aria-label="Anterior"
+                    type="button"
+                  >
+                    ‹
+                  </button>
+                )}
+                {activeFeature < features.length - 1 && (
+                  <button
+                    onClick={() => scrollCarousel(featuresCarouselRef, 1)}
+                    className="absolute right-3 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/45 text-[#1d2818]/70 shadow-sm backdrop-blur-md transition hover:bg-white/60 md:flex"
+                    aria-label="Próximo"
+                    type="button"
+                  >
+                    ›
+                  </button>
+                )}
+
+                <div
+                  ref={featuresCarouselRef}
+                  onScroll={() =>
+                    updateActiveSlide(featuresCarouselRef, setActiveFeature)
+                  }
+                  className="relative flex w-full snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden touch-pan-x"
+                >
                   {features.map((item, i) => (
                     <motion.div
                       key={i}
@@ -244,46 +326,42 @@ export default function LandingPage() {
                       viewport={{ once: true, amount: 0.3 }}
                       variants={fadeUp}
                       transition={{ duration: 0.5, delay: i * 0.06 }}
-                      className="min-w-[88%] snap-center rounded-[28px] border border-white/15 bg-white/20 p-6 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]"
+                      className="basis-full shrink-0 snap-start"
                     >
-                      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-[#dbe3cf]">
-                        <SunMedium className="h-5 w-5 text-[#3d4a31]/90" />
+                      <div className="relative overflow-hidden rounded-[28px]">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="block h-64 w-full object-cover md:h-80 lg:h-[26rem]"
+                        />
                       </div>
-                      <p className="text-base leading-7 text-[#2a3b23]">
-                        {item}
+                      <p className="mt-4 max-w-xl text-base leading-7 text-[#1f281b] md:text-lg md:leading-8">
+                        {item.title}
                       </p>
                     </motion.div>
                   ))}
                 </div>
+
                 <div className="mt-3 flex justify-center gap-1.5">
                   {features.map((_, i) => (
-                    <div
+                    <button
                       key={i}
-                      className="h-1.5 w-1.5 rounded-full bg-[#2a3b23]/30"
+                      type="button"
+                      aria-label={`Ir para foto ${i + 1}`}
+                      onClick={() => {
+                        const el = featuresCarouselRef.current;
+                        if (!el) return;
+                        el.scrollTo({
+                          left: el.clientWidth * i,
+                          behavior: "smooth",
+                        });
+                      }}
+                      className={`h-1.5 rounded-full transition-all ${activeFeature === i ? "w-5 bg-[#2a3b23]" : "w-1.5 bg-[#2a3b23]/30"}`}
                     />
                   ))}
                 </div>
               </div>
-
-              <div className="hidden gap-4 md:grid md:grid-cols-2">
-                {features.map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
-                    variants={fadeUp}
-                    transition={{ duration: 0.5, delay: i * 0.06 }}
-                    className="rounded-[28px] border border-white/15 bg-white/20 p-6 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]"
-                  >
-                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-[#dbe3cf]">
-                      <SunMedium className="h-5 w-5 text-[#3d4a31]/90" />
-                    </div>
-                    <p className="text-base leading-7 text-[#2a3b23]">{item}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+            </motion.div>
 
             <div className="flex flex-col justify-between rounded-[36px] bg-[linear-gradient(180deg,#2a3b23,#1d2818)] p-8 text-white shadow-[0_20px_80px_rgba(29,40,24,0.24)] md:p-10">
               <div>
@@ -317,13 +395,14 @@ export default function LandingPage() {
 
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 lg:px-16 lg:py-32">
-          <div className="grid items-start gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="grid items-stretch gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeUp}
               transition={{ duration: 0.7 }}
+              className="flex h-full flex-col"
             >
               <p className="text-sm font-medium uppercase tracking-[0.22em] text-[#626d46]/75">
                 Inteligência que reduz custo
@@ -331,9 +410,88 @@ export default function LandingPage() {
               <h2 className="mt-4 text-4xl font-semibold tracking-[-0.05em] md:text-6xl md:leading-[1.02]">
                 Inteligência não é só tecnologia.
               </h2>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-white/75">
+              <p className="mt-6 max-w-xl text-lg leading-8 text-[#4f5b3b]/85">
                 É viver melhor pagando menos todos os meses.
               </p>
+
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={fadeUp}
+                transition={{ duration: 0.7, delay: 0.05 }}
+                className="relative mt-10 rounded-[36px] border border-[#626d46]/10 bg-white/60 p-5 shadow-[0_20px_80px_rgba(42,59,35,0.08)] backdrop-blur-xl lg:mt-auto"
+              >
+                <div className="relative">
+                  {activeTech > 0 && (
+                    <button
+                      onClick={() => scrollCarousel(techCarouselRef, -1)}
+                      className="absolute left-3 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/45 text-[#1d2818]/70 shadow-sm backdrop-blur-md transition hover:bg-white/60 md:flex"
+                      aria-label="Anterior"
+                      type="button"
+                    >
+                      ‹
+                    </button>
+                  )}
+                  {activeTech < techGallery.length - 1 && (
+                    <button
+                      onClick={() => scrollCarousel(techCarouselRef, 1)}
+                      className="absolute right-3 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/45 text-[#1d2818]/70 shadow-sm backdrop-blur-md transition hover:bg-white/60 md:flex"
+                      aria-label="Próximo"
+                      type="button"
+                    >
+                      ›
+                    </button>
+                  )}
+
+                  <div
+                    ref={techCarouselRef}
+                    onScroll={() =>
+                      updateActiveSlide(techCarouselRef, setActiveTech)
+                    }
+                    className="relative flex w-full snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden touch-pan-x"
+                  >
+                    {techGallery.map((item, i) => (
+                      <motion.div
+                        key={i}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }}
+                        variants={fadeUp}
+                        transition={{ duration: 0.5, delay: i * 0.06 }}
+                        className="basis-full shrink-0 snap-start"
+                      >
+                        <div className="relative overflow-hidden rounded-[28px]">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="block h-64 w-full object-cover md:h-80 lg:h-[24rem]"
+                          />
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  <div className="mt-3 flex justify-center gap-1.5">
+                    {techGallery.map((_, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        aria-label={`Ir para item ${i + 1}`}
+                        onClick={() => {
+                          const el = techCarouselRef.current;
+                          if (!el) return;
+                          el.scrollTo({
+                            left: el.clientWidth * i,
+                            behavior: "smooth",
+                          });
+                        }}
+                        className={`h-1.5 rounded-full transition-all ${activeTech === i ? "w-5 bg-[#2a3b23]" : "w-1.5 bg-[#2a3b23]/30"}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
 
             <motion.div
@@ -359,9 +517,9 @@ export default function LandingPage() {
                 {savings.map((item, i) => (
                   <div
                     key={i}
-                    className="flex items-start gap-4 rounded-[24px] bg-white p-5 shadow-sm"
+                    className="flex items-center gap-4 rounded-[24px] bg-white p-5 shadow-sm"
                   >
-                    <div className="mt-1 flex h-9 w-9 items-center justify-center rounded-full bg-[#eef1e8] ring-1 ring-[#dbe3cf]">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eef1e8] ring-1 ring-[#dbe3cf]">
                       <ShieldCheck className="h-4 w-4 text-[#4f5b3b]/85" />
                     </div>
                     <p className="text-base leading-7 text-[#31402a]/90">
@@ -375,8 +533,24 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="overflow-hidden bg-[#1d2818] text-white">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-24 md:px-10 lg:grid-cols-2 lg:px-16 lg:py-32">
+      <section className="relative overflow-hidden bg-[#141b11] text-white">
+        <motion.div
+          aria-hidden="true"
+          className="absolute inset-0 will-change-transform pointer-events-none"
+          initial={{ y: -20, scale: 1.04 }}
+          whileInView={{ y: 20, scale: 1.08 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 1.8, ease: "easeOut" }}
+        >
+          <img
+            src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/experience.jpg?raw=true"
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-x-0 top-0 h-[36%] bg-[linear-gradient(180deg,rgba(20,27,17,0.55)_0%,rgba(20,27,17,0.25)_50%,transparent_100%)]" />
+        </motion.div>
+
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-6 py-24 md:px-10 lg:grid-cols-2 lg:px-16 lg:py-32">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -407,10 +581,37 @@ export default function LandingPage() {
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="relative rounded-[40px] border border-[#dbe3cf]/20 bg-[radial-gradient(circle_at_top,rgba(219,227,207,0.16),transparent_35%),linear-gradient(180deg,#31402a,#1d2818)] p-5 shadow-[0_30px_100px_rgba(20,28,16,0.42)]"
+            className="relative rounded-[36px] border border-white/15 bg-white/10 backdrop-blur-xl p-5 shadow-[0_25px_100px_rgba(0,0,0,0.18)] ring-1 ring-white/10 overflow-hidden"
           >
-            <div className="md:hidden">
-              <div className="-mx-1 flex snap-x snap-mandatory gap-4 overflow-x-auto px-1 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <div className="relative">
+              {activeRooftop > 0 && (
+                <button
+                  onClick={() => scrollCarousel(rooftopCarouselRef, -1)}
+                  className="absolute left-3 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/45 text-[#1d2818]/70 shadow-sm backdrop-blur-md transition hover:bg-white/60 md:flex"
+                  aria-label="Anterior"
+                  type="button"
+                >
+                  ‹
+                </button>
+              )}
+              {activeRooftop < 5 && (
+                <button
+                  onClick={() => scrollCarousel(rooftopCarouselRef, 1)}
+                  className="absolute right-3 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/45 text-[#1d2818]/70 shadow-sm backdrop-blur-md transition hover:bg-white/60 md:flex"
+                  aria-label="Próximo"
+                  type="button"
+                >
+                  ›
+                </button>
+              )}
+
+              <div
+                ref={rooftopCarouselRef}
+                onScroll={() =>
+                  updateActiveSlide(rooftopCarouselRef, setActiveRooftop)
+                }
+                className="relative flex w-full snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden touch-pan-x"
+              >
                 {[
                   {
                     src: "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/gallery-01.png?raw=true",
@@ -437,79 +638,38 @@ export default function LandingPage() {
                     alt: "Vista rooftop Craibeira Terrazzo",
                   },
                 ].map((image) => (
-                  <div key={image.src} className="min-w-[88%] snap-center">
+                  <div
+                    key={image.src}
+                    className="basis-full shrink-0 snap-start"
+                  >
                     <div className="relative overflow-hidden rounded-[28px]">
                       <img
                         src={image.src}
                         alt={image.alt}
-                        className="block h-64 w-full object-cover"
+                        className="block h-64 w-full object-cover md:h-80 lg:h-[26rem]"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
 
-            <div className="hidden md:grid gap-4">
-              <div className="md:grid md:h-64 md:grid-cols-[1.1fr_0.9fr] gap-4">
-                <div className="relative group overflow-hidden rounded-[32px]">
-                  <img
-                    src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/gallery-01.png?raw=true"
-                    alt="Rooftop Craibeira Terrazzo"
-                    className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              <div className="mt-3 flex justify-center gap-1.5">
+                {[0, 1, 2, 3, 4, 5].map((i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    aria-label={`Ir para foto ${i + 1}`}
+                    onClick={() => {
+                      const el = rooftopCarouselRef.current;
+                      if (!el) return;
+                      el.scrollTo({
+                        left: el.clientWidth * i,
+                        behavior: "smooth",
+                      });
+                    }}
+                    className={`h-1.5 rounded-full transition-all ${activeRooftop === i ? "w-5 bg-white/90" : "w-1.5 bg-white/35"}`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition duration-300 group-hover:opacity-80" />
-                </div>
-
-                <div className="md:grid md:h-full md:grid-rows-2 gap-4">
-                  <div className="relative group overflow-hidden rounded-[28px]">
-                    <img
-                      src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/gallery-02.png?raw=true"
-                      alt="Ambiente rooftop Craibeira Terrazzo"
-                      className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition duration-300 group-hover:opacity-80" />
-                  </div>
-
-                  <div className="relative group overflow-hidden rounded-[28px]">
-                    <img
-                      src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/gallery-03.png?raw=true"
-                      alt="Área de lazer Craibeira Terrazzo"
-                      className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition duration-300 group-hover:opacity-80" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-4 grid gap-4 md:grid-cols-3">
-                <div className="relative group overflow-hidden rounded-[28px]">
-                  <img
-                    src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/gallery-04.png?raw=true"
-                    alt="Piscina Craibeira Terrazzo"
-                    className="block h-32 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition duration-300 group-hover:opacity-80" />
-                </div>
-
-                <div className="relative group overflow-hidden rounded-[28px]">
-                  <img
-                    src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/gallery-05.png?raw=true"
-                    alt="Espaço gourmet Craibeira Terrazzo"
-                    className="block h-32 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition duration-300 group-hover:opacity-80" />
-                </div>
-
-                <div className="relative group overflow-hidden rounded-[28px]">
-                  <img
-                    src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/gallery-06.png?raw=true"
-                    alt="Vista rooftop Craibeira Terrazzo"
-                    className="block h-32 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 transition duration-300 group-hover:opacity-80" />
-                </div>
+                ))}
               </div>
             </div>
           </motion.div>
@@ -517,7 +677,7 @@ export default function LandingPage() {
       </section>
 
       <section className="bg-white">
-        <div className="mx-auto max-w-5xl px-6 py-24 text-center md:px-10 lg:px-16 lg:py-28">
+        <div className="mx-auto max-w-5xl px-6 py-24 text-left md:text-center md:px-10 lg:px-16 lg:py-28">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -561,7 +721,7 @@ export default function LandingPage() {
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeUp}
             transition={{ duration: 0.7 }}
-            className="rounded-[36px] border border-white/15 bg-[rgba(20,27,17,0.45)] backdrop-blur-md p-10 text-center shadow-[0_25px_100px_rgba(0,0,0,0.35)] md:p-16 relative overflow-hidden"
+            className="rounded-[36px] border border-white/15 bg-[rgba(20,27,17,0.24)] backdrop-blur-md p-10 text-left md:text-center shadow-[0_25px_100px_rgba(0,0,0,0.14)] md:p-16 relative overflow-hidden"
           >
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.25),transparent_40%)] opacity-40" />
             <p className="text-sm font-medium uppercase tracking-[0.22em] text-white/70">
@@ -593,7 +753,7 @@ export default function LandingPage() {
             viewport={{ once: true, amount: 0.25 }}
             variants={fadeUp}
             transition={{ duration: 0.7 }}
-            className="mb-14 text-center"
+            className="mb-14 text-left md:text-center"
           >
             <p className="text-sm font-medium uppercase tracking-[0.22em] text-[#626d46]/75">
               Quem faz o Craibeira Terrazzo
@@ -626,16 +786,34 @@ export default function LandingPage() {
                     ) : (
                       <div className="h-[340px] bg-[linear-gradient(180deg,#c7d0bc,#8b9770)]" />
                     )}
-                    <div className="flex flex-1 flex-col p-8">
-                      <p className="text-2xl font-semibold tracking-[-0.03em] text-[#1f281b]">
+                    <div className="flex flex-1 flex-col p-8 pt-7">
+                      <motion.p
+                        initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
+                        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        viewport={{ once: true, amount: 0.4 }}
+                        transition={{ duration: 0.45, delay: 0.04 + i * 0.06 }}
+                        className="text-[22px] font-semibold tracking-[-0.02em] text-[#1f281b] leading-[1.2]"
+                      >
                         {person.name}
-                      </p>
-                      <p className="mt-1 text-sm uppercase tracking-[0.18em] text-[#626d46]/75">
+                      </motion.p>
+                      <motion.p
+                        initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
+                        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        viewport={{ once: true, amount: 0.4 }}
+                        transition={{ duration: 0.45, delay: 0.1 + i * 0.06 }}
+                        className="mt-2 text-[11px] uppercase tracking-[0.22em] text-[#626d46]/70"
+                      >
                         {person.role}
-                      </p>
-                      <p className="mt-5 flex-1 text-base leading-7 text-[#4f5b3b]/85">
+                      </motion.p>
+                      <motion.p
+                        initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
+                        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        viewport={{ once: true, amount: 0.4 }}
+                        transition={{ duration: 0.5, delay: 0.16 + i * 0.06 }}
+                        className="mt-4 flex-1 text-[15px] leading-[1.75] tracking-[-0.01em] text-[#4f5b3b]/85"
+                      >
                         {person.bio}
-                      </p>
+                      </motion.p>
                     </div>
                   </div>
                 </div>
