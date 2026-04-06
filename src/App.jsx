@@ -98,7 +98,7 @@ const people = [
 
 export default function LandingPage() {
   const whatsappMessage = encodeURIComponent(
-    "Olá! Vim pelo site do Craibeira Terrazzo e tenho interesse no empreendimento. Gostaria de receber mais informações.",
+    "Olá! Acessei o site do Craibeira Terrazzo e tenho interesse no empreendimento. Gostaria de receber mais informações.",
   );
   const whatsappLink = `https://wa.me/558381759338?text=${whatsappMessage}`;
   const featuresCarouselRef = useRef(null);
