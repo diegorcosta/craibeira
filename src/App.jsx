@@ -241,7 +241,7 @@ export default function LandingPage() {
               transition={{ duration: 0.7, delay: 0.08 }}
               className="text-center lg:pl-4 lg:text-left"
             >
-              <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#eef1e8] shadow-[0_8px_30px_rgba(42,59,35,0.08)]">
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#eef1e8] shadow-[0_8px_30px_rgba(42,59,35,0.08)]">
                 <Trees className="h-7 w-7 text-[#626d46]" />
               </div>
               <p className="max-w-4xl text-3xl font-semibold tracking-[-0.04em] md:text-5xl md:leading-[1.05]">
@@ -363,7 +363,7 @@ export default function LandingPage() {
               </div>
             </motion.div>
 
-            <div className="flex flex-col justify-between rounded-[36px] bg-[linear-gradient(180deg,#2a3b23,#1d2818)] p-8 text-white shadow-[0_20px_80px_rgba(29,40,24,0.24)] md:p-10">
+            <div className="flex flex-col justify-between rounded-[36px] bg-[linear-gradient(180deg,#2a3b23,#1d2818)] p-6 text-white shadow-[0_20px_80px_rgba(29,40,24,0.24)] md:p-10">
               <div>
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#dbe3cf]/10 backdrop-blur-md">
                   <Building2 className="h-6 w-6" />
@@ -394,7 +394,7 @@ export default function LandingPage() {
       </section>
 
       <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 lg:px-16 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 lg:px-16 lg:py-32">
           <div className="grid items-stretch gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <motion.div
               initial="hidden"
@@ -420,7 +420,7 @@ export default function LandingPage() {
                 viewport={{ once: true, amount: 0.2 }}
                 variants={fadeUp}
                 transition={{ duration: 0.7, delay: 0.05 }}
-                className="relative mt-10 rounded-[36px] border border-[#626d46]/10 bg-white/60 p-5 shadow-[0_20px_80px_rgba(42,59,35,0.08)] backdrop-blur-xl lg:mt-auto"
+                className="relative mt-10 rounded-[36px] border border-[#626d46]/10 bg-white/60 p-3 shadow-[0_20px_80px_rgba(42,59,35,0.08)] backdrop-blur-xl md:p-5 lg:mt-auto"
               >
                 <div className="relative">
                   {activeTech > 0 && (
@@ -500,9 +500,9 @@ export default function LandingPage() {
               viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
               transition={{ duration: 0.7 }}
-              className="rounded-[40px] border border-[#626d46]/12 bg-[#eef1e8] p-8 shadow-[0_16px_60px_rgba(42,59,35,0.08)] md:p-10"
+              className="rounded-[40px] border border-[#626d46]/12 bg-[#eef1e8] p-6 shadow-[0_16px_60px_rgba(42,59,35,0.08)] md:p-10"
             >
-              <div className="mb-10 rounded-[32px] bg-[linear-gradient(180deg,#ffffff,#f3f6ee)] p-8 shadow-inner">
+              <div className="mb-10 rounded-[32px] bg-[linear-gradient(180deg,#ffffff,#f3f6ee)] p-6 shadow-inner md:p-8">
                 <div className="text-sm uppercase tracking-[0.22em] text-[#626d46]/75">
                   Eficiência real
                 </div>
@@ -517,7 +517,7 @@ export default function LandingPage() {
                 {savings.map((item, i) => (
                   <div
                     key={i}
-                    className="flex items-center gap-4 rounded-[24px] bg-white p-5 shadow-sm"
+                    className="flex items-center justify-center gap-4 rounded-[24px] bg-white p-4 text-center shadow-sm md:justify-start md:p-5 md:text-left"
                   >
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eef1e8] ring-1 ring-[#dbe3cf]">
                       <ShieldCheck className="h-4 w-4 text-[#4f5b3b]/85" />
@@ -677,7 +677,7 @@ export default function LandingPage() {
       </section>
 
       <section className="bg-white">
-        <div className="mx-auto max-w-5xl px-6 py-24 text-center md:px-10 lg:px-16 lg:py-28">
+        <div className="mx-auto max-w-5xl px-6 py-20 text-center md:px-10 lg:px-16 lg:py-28">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -714,14 +714,14 @@ export default function LandingPage() {
           />
         </motion.div>
 
-        <div className="relative z-10 mx-auto max-w-6xl px-6 py-24 md:px-10 lg:px-16 lg:py-30">
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 md:px-10 lg:px-16 lg:py-28">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeUp}
             transition={{ duration: 0.7 }}
-            className="rounded-[36px] border border-white/15 bg-[rgba(20,27,17,0.24)] backdrop-blur-md p-10 text-center shadow-[0_25px_100px_rgba(0,0,0,0.14)] md:p-16 relative overflow-hidden"
+            className="rounded-[36px] border border-white/15 bg-[rgba(20,27,17,0.24)] backdrop-blur-md p-6 text-center shadow-[0_25px_100px_rgba(0,0,0,0.14)] md:p-16 relative overflow-hidden"
           >
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.25),transparent_40%)] opacity-40" />
             <p className="text-sm font-medium uppercase tracking-[0.22em] text-white/70">
@@ -746,7 +746,7 @@ export default function LandingPage() {
       </section>
 
       <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 lg:px-16 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 lg:px-16 lg:py-32">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -786,7 +786,7 @@ export default function LandingPage() {
                     ) : (
                       <div className="h-[340px] bg-[linear-gradient(180deg,#c7d0bc,#8b9770)]" />
                     )}
-                    <div className="flex flex-1 flex-col p-8 pt-7">
+                    <div className="flex flex-1 flex-col p-6 pt-6 md:p-8 md:pt-7">
                       <motion.p
                         initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
                         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
