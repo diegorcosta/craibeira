@@ -176,7 +176,7 @@ export default function LandingPage() {
             animate="visible"
             variants={fadeUp}
             transition={{ duration: 0.8 }}
-            className="mx-auto flex max-w-4xl flex-1 flex-col items-center justify-center text-left md:text-center"
+            className="mx-auto flex max-w-4xl flex-1 flex-col items-center justify-center text-center"
           >
             <div className="mb-6 rounded-full border border-[#dbe3cf]/25 bg-[#dbe3cf]/10 px-4 py-2 text-xs uppercase tracking-[0.18em] text-[#f7faf4]/95 backdrop-blur-md">
               Natureza, conforto e inteligência
@@ -184,7 +184,7 @@ export default function LandingPage() {
             <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.06em] md:text-7xl lg:text-[92px] lg:leading-[0.98]">
               Viva no seu tempo.
             </h1>
-            <div className="mt-6 w-full max-w-2xl rounded-[28px] border border-white/15 bg-[rgba(20,27,17,0.22)] p-6 text-left md:text-center shadow-[0_20px_80px_rgba(0,0,0,0.08)] backdrop-blur-md md:p-8">
+            <div className="mt-6 w-full max-w-2xl rounded-[28px] border border-white/15 bg-[rgba(20,27,17,0.22)] p-5 md:p-8 text-center shadow-[0_20px_80px_rgba(0,0,0,0.08)] backdrop-blur-md md:p-8">
               <p className="text-base leading-7 text-[#eef4e8]/92 md:text-xl md:leading-8">
                 Um refúgio urbano onde natureza, conforto e inteligência
                 convivem em equilíbrio.
@@ -239,7 +239,7 @@ export default function LandingPage() {
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeUp}
               transition={{ duration: 0.7, delay: 0.08 }}
-              className="text-left lg:pl-4"
+              className="text-center lg:pl-4 lg:text-left"
             >
               <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#eef1e8] shadow-[0_8px_30px_rgba(42,59,35,0.08)]">
                 <Trees className="h-7 w-7 text-[#626d46]" />
@@ -270,7 +270,7 @@ export default function LandingPage() {
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
             transition={{ duration: 0.7 }}
-            className="mb-14 text-left md:text-center"
+            className="mb-14 text-center"
           >
             <p className="text-sm font-medium uppercase tracking-[0.22em] text-[#626d46]/75">
               Experiência de morar
@@ -287,7 +287,7 @@ export default function LandingPage() {
               viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
               transition={{ duration: 0.7, delay: 0.05 }}
-              className="relative rounded-[36px] border border-white/15 bg-white/10 backdrop-blur-xl p-5 shadow-[0_25px_100px_rgba(0,0,0,0.18)] ring-1 ring-white/10 overflow-hidden"
+              className="relative rounded-[36px] border border-white/15 bg-white/10 backdrop-blur-xl p-3 md:p-5 shadow-[0_25px_100px_rgba(0,0,0,0.18)] ring-1 ring-white/10 overflow-hidden"
             >
               <div className="relative">
                 {activeFeature > 0 && (
@@ -581,7 +581,7 @@ export default function LandingPage() {
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="relative rounded-[36px] border border-white/15 bg-white/10 backdrop-blur-xl p-5 shadow-[0_25px_100px_rgba(0,0,0,0.18)] ring-1 ring-white/10 overflow-hidden"
+            className="relative rounded-[36px] border border-white/15 bg-white/10 backdrop-blur-xl p-3 md:p-5 shadow-[0_25px_100px_rgba(0,0,0,0.18)] ring-1 ring-white/10 overflow-hidden"
           >
             <div className="relative">
               {activeRooftop > 0 && (
@@ -677,7 +677,7 @@ export default function LandingPage() {
       </section>
 
       <section className="bg-white">
-        <div className="mx-auto max-w-5xl px-6 py-24 text-left md:text-center md:px-10 lg:px-16 lg:py-28">
+        <div className="mx-auto max-w-5xl px-6 py-24 text-center md:px-10 lg:px-16 lg:py-28">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -721,7 +721,7 @@ export default function LandingPage() {
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeUp}
             transition={{ duration: 0.7 }}
-            className="rounded-[36px] border border-white/15 bg-[rgba(20,27,17,0.24)] backdrop-blur-md p-10 text-left md:text-center shadow-[0_25px_100px_rgba(0,0,0,0.14)] md:p-16 relative overflow-hidden"
+            className="rounded-[36px] border border-white/15 bg-[rgba(20,27,17,0.24)] backdrop-blur-md p-10 text-center shadow-[0_25px_100px_rgba(0,0,0,0.14)] md:p-16 relative overflow-hidden"
           >
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.25),transparent_40%)] opacity-40" />
             <p className="text-sm font-medium uppercase tracking-[0.22em] text-white/70">
@@ -753,7 +753,7 @@ export default function LandingPage() {
             viewport={{ once: true, amount: 0.25 }}
             variants={fadeUp}
             transition={{ duration: 0.7 }}
-            className="mb-14 text-left md:text-center"
+            className="mb-14 text-center"
           >
             <p className="text-sm font-medium uppercase tracking-[0.22em] text-[#626d46]/75">
               Quem faz o Craibeira Terrazzo
