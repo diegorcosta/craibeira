@@ -241,9 +241,6 @@ export default function LandingPage() {
               transition={{ duration: 0.7, delay: 0.08 }}
               className="text-center lg:pl-4 lg:text-left"
             >
-              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#eef1e8] shadow-[0_8px_30px_rgba(42,59,35,0.08)]">
-                <Trees className="h-7 w-7 text-[#626d46]" />
-              </div>
               <p className="max-w-4xl text-3xl font-semibold tracking-[-0.04em] md:text-5xl md:leading-[1.05]">
                 Mais de 40 anos de natureza fazem parte do seu novo endereço.
               </p>
