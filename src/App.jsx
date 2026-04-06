@@ -97,7 +97,10 @@ const people = [
 ];
 
 export default function LandingPage() {
-  const whatsappLink = "https://wa.me/558381759338";
+  const whatsappMessage = encodeURIComponent(
+    "Olá! Vim pelo site do Craibeira Terrazzo e tenho interesse no empreendimento. Gostaria de receber mais informações.",
+  );
+  const whatsappLink = `https://wa.me/558381759338?text=${whatsappMessage}`;
   const featuresCarouselRef = useRef(null);
   const rooftopCarouselRef = useRef(null);
   const techCarouselRef = useRef(null);
@@ -241,6 +244,9 @@ export default function LandingPage() {
               transition={{ duration: 0.7, delay: 0.08 }}
               className="text-center lg:pl-4 lg:text-left"
             >
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#eef1e8] shadow-[0_8px_30px_rgba(42,59,35,0.08)]">
+                <Trees className="h-7 w-7 text-[#626d46]" />
+              </div>
               <p className="max-w-4xl text-3xl font-semibold tracking-[-0.04em] md:text-5xl md:leading-[1.05]">
                 Mais de 40 anos de natureza fazem parte do seu novo endereço.
               </p>
@@ -316,15 +322,7 @@ export default function LandingPage() {
                   className="relative flex w-full snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden touch-pan-x"
                 >
                   {features.map((item, i) => (
-                    <motion.div
-                      key={i}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true, amount: 0.3 }}
-                      variants={fadeUp}
-                      transition={{ duration: 0.5, delay: i * 0.06 }}
-                      className="basis-full shrink-0 snap-start"
-                    >
+                    <div key={i} className="basis-full shrink-0 snap-start">
                       <div className="relative overflow-hidden rounded-[28px]">
                         <img
                           src={item.image}
@@ -335,7 +333,7 @@ export default function LandingPage() {
                       <p className="mt-4 max-w-xl text-base leading-7 text-[#1f281b] md:text-lg md:leading-8">
                         {item.title}
                       </p>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
 
@@ -401,15 +399,17 @@ export default function LandingPage() {
               transition={{ duration: 0.7 }}
               className="flex h-full flex-col"
             >
-              <p className="text-sm font-medium uppercase tracking-[0.22em] text-[#626d46]/75">
-                Inteligência que reduz custo
-              </p>
-              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.05em] md:text-6xl md:leading-[1.02]">
-                Inteligência não é só tecnologia.
-              </h2>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-[#4f5b3b]/85">
-                É viver melhor pagando menos todos os meses.
-              </p>
+              <div>
+                <p className="text-sm font-medium uppercase tracking-[0.22em] text-[#626d46]/75">
+                  Inteligência que reduz custo
+                </p>
+                <h2 className="mt-4 text-4xl font-semibold tracking-[-0.05em] md:text-6xl md:leading-[1.02]">
+                  Inteligência não é só tecnologia.
+                </h2>
+                <p className="mt-6 max-w-xl text-lg leading-8 text-[#4f5b3b]/85">
+                  É viver melhor pagando menos todos os meses.
+                </p>
+              </div>
 
               <motion.div
                 initial="hidden"
@@ -449,15 +449,7 @@ export default function LandingPage() {
                     className="relative flex w-full snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden touch-pan-x"
                   >
                     {techGallery.map((item, i) => (
-                      <motion.div
-                        key={i}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.3 }}
-                        variants={fadeUp}
-                        transition={{ duration: 0.5, delay: i * 0.06 }}
-                        className="basis-full shrink-0 snap-start"
-                      >
+                      <div key={i} className="basis-full shrink-0 snap-start">
                         <div className="relative overflow-hidden rounded-[28px]">
                           <img
                             src={item.image}
@@ -465,7 +457,7 @@ export default function LandingPage() {
                             className="block h-64 w-full object-cover md:h-80 lg:h-[24rem]"
                           />
                         </div>
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
 
