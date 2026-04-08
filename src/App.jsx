@@ -74,7 +74,7 @@ const techGallery = [
   {
     title: "Minimercado autônomo próprio do condomínio",
     image:
-      "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/tec-04.jpg?raw=true",
+      "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/tec-05.jpg?raw=true",
   },
 ];
 
@@ -142,6 +142,51 @@ export default function LandingPage() {
       "href",
       "https://raw.githubusercontent.com/diegorcosta/craibeira/refs/heads/main/src/assets/img/favicon.svg",
     );
+  }, []);
+
+  useEffect(() => {
+    // =========================
+    // META PIXEL
+    // =========================
+    !(function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () {
+        n.callMethod
+          ? n.callMethod.apply(n, arguments)
+          : n.queue.push(arguments);
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = true;
+      n.version = "2.0";
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = true;
+      t.src = "https://connect.facebook.net/en_US/fbevents.js";
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    })(window, document, "script");
+
+    window.fbq("init", "1871812700197749");
+    window.fbq("track", "PageView");
+
+    // =========================
+    // GOOGLE ANALYTICS (GA4)
+    // =========================
+    const script1 = document.createElement("script");
+    script1.src = "https://www.googletagmanager.com/gtag/js?id=G-EBR1TT9KL4";
+    script1.async = true;
+    document.head.appendChild(script1);
+
+    const script2 = document.createElement("script");
+    script2.innerHTML = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-EBR1TT9KL4');
+  `;
+    document.head.appendChild(script2);
   }, []);
 
   return (
