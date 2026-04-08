@@ -248,6 +248,16 @@ export default function LandingPage() {
                   href={whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => {
+                    if (window.fbq) window.fbq("track", "Lead");
+
+                    if (window.gtag) {
+                      window.gtag("event", "conversion", {
+                        event_category: "WhatsApp",
+                        event_label: "Clique WhatsApp",
+                      });
+                    }
+                  }}
                 >
                   <button className="h-12 cursor-pointer rounded-full bg-[#dbe3cf] px-7 text-sm font-medium text-[#1d2818] transition-all duration-200 hover:bg-[#eef4e8] active:scale-[0.99]">
                     Quero acesso antecipado
@@ -425,6 +435,16 @@ export default function LandingPage() {
                   href={whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => {
+                    if (window.fbq) window.fbq("track", "Lead");
+
+                    if (window.gtag) {
+                      window.gtag("event", "conversion", {
+                        event_category: "WhatsApp",
+                        event_label: "Clique WhatsApp",
+                      });
+                    }
+                  }}
                 >
                   <button className="h-12 cursor-pointer rounded-full bg-[#dbe3cf] px-7 text-sm font-medium text-[#1d2818] transition-all duration-200 hover:bg-[#eef4e8] active:scale-[0.99]">
                     Quero conhecer as condições exclusivas
@@ -605,7 +625,21 @@ export default function LandingPage() {
               Piscina, academia, espaço gourmet e áreas pensadas para viver —
               todos os dias.
             </p>
-            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                if (window.fbq) window.fbq("track", "Lead");
+
+                if (window.gtag) {
+                  window.gtag("event", "conversion", {
+                    event_category: "WhatsApp",
+                    event_label: "Clique WhatsApp",
+                  });
+                }
+              }}
+            >
               <button className="mt-10 h-12 cursor-pointer rounded-full bg-[#dbe3cf] px-7 text-sm font-medium text-[#1d2818] transition-all duration-200 hover:bg-[#eef4e8] active:scale-[0.99]">
                 Falar com um especialista
               </button>
