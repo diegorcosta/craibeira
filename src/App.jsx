@@ -47,6 +47,7 @@ const savings = [
   "Infraestrutura para energia solar nas áreas comuns",
   "Elevador com alta eficiência energética",
   "Consumo inteligente em toda operação do condomínio",
+  "Minimercado autônomo próprio do condomínio",
 ];
 
 const techGallery = [
@@ -67,6 +68,11 @@ const techGallery = [
   },
   {
     title: "Consumo inteligente em toda operação do condomínio",
+    image:
+      "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/tec-04.jpg?raw=true",
+  },
+  {
+    title: "Minimercado autônomo próprio do condomínio",
     image:
       "https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/tec-04.jpg?raw=true",
   },
@@ -98,7 +104,7 @@ const people = [
 
 export default function LandingPage() {
   const whatsappMessage = encodeURIComponent(
-    "Olá! Acessei o site do Craibeira Terrazzo e tenho interesse no empreendimento. Gostaria de receber mais informações.",
+    "Olá, tenho interesse em mais informações.",
   );
   const whatsappLink = `https://wa.me/558381759338?text=${whatsappMessage}`;
   const featuresCarouselRef = useRef(null);
