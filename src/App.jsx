@@ -5,7 +5,6 @@ import {
   Trees,
   SunMedium,
   Building2,
-  Phone,
 } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -78,6 +77,17 @@ const techGallery = [
   },
 ];
 
+const WhatsAppIcon = ({ className = "" }) => (
+  <svg
+    viewBox="0 0 32 32"
+    fill="currentColor"
+    aria-hidden="true"
+    className={className}
+  >
+    <path d="M16.01 3.2c-7.05 0-12.78 5.68-12.78 12.67 0 2.23.59 4.4 1.7 6.31L3.2 28.8l6.82-1.78a12.9 12.9 0 0 0 5.99 1.51c7.05 0 12.79-5.68 12.79-12.66S23.06 3.2 16.01 3.2Zm0 23.16c-1.9 0-3.76-.51-5.38-1.47l-.39-.23-4.05 1.06 1.08-3.91-.25-.4a10.36 10.36 0 0 1-1.61-5.54c0-5.78 4.75-10.49 10.6-10.49 5.84 0 10.6 4.71 10.6 10.49s-4.76 10.49-10.6 10.49Zm5.82-7.86c-.32-.16-1.88-.92-2.17-1.02-.29-.11-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.69.08-.32-.16-1.35-.49-2.57-1.57-.95-.84-1.59-1.88-1.78-2.19-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.31.32-.52.11-.21.05-.39-.03-.55-.08-.16-.71-1.69-.97-2.31-.26-.6-.52-.52-.71-.53h-.61c-.21 0-.55.08-.84.39-.29.31-1.1 1.08-1.1 2.62s1.13 3.03 1.29 3.24c.16.21 2.22 3.36 5.38 4.71.75.32 1.33.51 1.79.65.75.24 1.44.21 1.98.13.6-.09 1.88-.76 2.14-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.61-.37Z" />
+  </svg>
+);
+
 const people = [
   {
     name: "Cid Rodrigues",
@@ -142,12 +152,8 @@ export default function LandingPage() {
       "href",
       "https://raw.githubusercontent.com/diegorcosta/craibeira/refs/heads/main/src/assets/img/favicon.svg",
     );
-  }, []);
 
-  useEffect(() => {
-    // =========================
     // META PIXEL
-    // =========================
     !(function (f, b, e, v, n, t, s) {
       if (f.fbq) return;
       n = f.fbq = function () {
@@ -157,36 +163,45 @@ export default function LandingPage() {
       };
       if (!f._fbq) f._fbq = n;
       n.push = n;
-      n.loaded = true;
+      n.loaded = !0;
       n.version = "2.0";
       n.queue = [];
       t = b.createElement(e);
-      t.async = true;
-      t.src = "https://connect.facebook.net/en_US/fbevents.js";
+      t.async = !0;
+      t.src = v;
       s = b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t, s);
-    })(window, document, "script");
+    })(
+      window,
+      document,
+      "script",
+      "https://connect.facebook.net/en_US/fbevents.js",
+    );
 
-    window.fbq("init", "1871812700197749");
-    window.fbq("track", "PageView");
+    fbq("init", "1871812700197749");
+    fbq("track", "PageView");
 
-    // =========================
-    // GOOGLE ANALYTICS (GA4)
-    // =========================
-    const script1 = document.createElement("script");
-    script1.src = "https://www.googletagmanager.com/gtag/js?id=G-EBR1TT9KL4";
-    script1.async = true;
-    document.head.appendChild(script1);
+    // GOOGLE TAG - GA4 + GOOGLE ADS
+    const gtagScript = document.createElement("script");
+    gtagScript.async = true;
+    gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-EBR1TT9KL4";
+    document.head.appendChild(gtagScript);
 
-    const script2 = document.createElement("script");
-    script2.innerHTML = `
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+
     window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', 'G-EBR1TT9KL4');
-  `;
-    document.head.appendChild(script2);
+
+    gtag("js", new Date());
+
+    // GA4
+    gtag("config", "G-EBR1TT9KL4");
+
+    // Google Ads
+    gtag("config", "AW-18175233945");
   }, []);
 
   return (
@@ -238,7 +253,8 @@ export default function LandingPage() {
             <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.06em] md:text-7xl lg:text-[92px] lg:leading-[0.98]">
               Viva no seu tempo.
             </h1>
-            <div className="mt-6 w-full max-w-2xl rounded-[28px] border border-white/15 bg-[rgba(20,27,17,0.22)] p-5 md:p-8 text-center shadow-[0_20px_80px_rgba(0,0,0,0.08)] backdrop-blur-md md:p-8">
+            {/*
+            <div className="mt-6 w-full max-w-2xl rounded-[28px] border border-white/15 bg-[rgba(20,27,17,0.22)] p-5 text-center shadow-[0_20px_80px_rgba(0,0,0,0.08)] backdrop-blur-md md:p-8">
               <p className="text-base leading-7 text-[#eef4e8]/92 md:text-xl md:leading-8">
                 Um refúgio urbano onde natureza, conforto e inteligência
                 convivem em equilíbrio.
@@ -248,16 +264,6 @@ export default function LandingPage() {
                   href={whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => {
-                    if (window.fbq) window.fbq("track", "Lead");
-
-                    if (window.gtag) {
-                      window.gtag("event", "conversion", {
-                        event_category: "WhatsApp",
-                        event_label: "Clique WhatsApp",
-                      });
-                    }
-                  }}
                 >
                   <button className="h-12 cursor-pointer rounded-full bg-[#dbe3cf] px-7 text-sm font-medium text-[#1d2818] transition-all duration-200 hover:bg-[#eef4e8] active:scale-[0.99]">
                     Quero acesso antecipado
@@ -269,6 +275,7 @@ export default function LandingPage() {
                 prioridade na escolha de unidades.
               </p>
             </div>
+            */}
           </motion.div>
 
           <div className="mx-auto mt-8 flex items-center gap-2 text-sm text-[#dbe3cf]/72">
@@ -292,7 +299,7 @@ export default function LandingPage() {
               <img
                 src="https://github.com/diegorcosta/craibeira/blob/main/src/assets/img/craibeira-terrazo.png?raw=true"
                 alt="Craibeira Terrazzo e sua área verde histórica"
-                className="block w-full h-auto object-contain"
+                className="block h-auto w-full object-contain"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#141b11]/18 to-transparent" />
             </motion.div>
@@ -305,6 +312,9 @@ export default function LandingPage() {
               transition={{ duration: 0.7, delay: 0.08 }}
               className="text-center lg:pl-4 lg:text-left"
             >
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#eef1e8] shadow-[0_8px_30px_rgba(42,59,35,0.08)]">
+                <Trees className="h-7 w-7 text-[#626d46]" />
+              </div>
               <p className="max-w-4xl text-3xl font-semibold tracking-[-0.04em] md:text-5xl md:leading-[1.05]">
                 Mais de 40 anos de natureza fazem parte do seu novo endereço.
               </p>
@@ -348,7 +358,7 @@ export default function LandingPage() {
               viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
               transition={{ duration: 0.7, delay: 0.05 }}
-              className="relative rounded-[36px] border border-white/15 bg-white/10 backdrop-blur-xl p-3 md:p-5 shadow-[0_25px_100px_rgba(0,0,0,0.18)] ring-1 ring-white/10 overflow-hidden"
+              className="relative rounded-[36px] border border-white/15 bg-white/10 p-3 shadow-[0_25px_100px_rgba(0,0,0,0.18)] ring-1 ring-white/10 backdrop-blur-xl overflow-hidden md:p-5"
             >
               <div className="relative">
                 {activeFeature > 0 && (
@@ -435,16 +445,6 @@ export default function LandingPage() {
                   href={whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => {
-                    if (window.fbq) window.fbq("track", "Lead");
-
-                    if (window.gtag) {
-                      window.gtag("event", "conversion", {
-                        event_category: "WhatsApp",
-                        event_label: "Clique WhatsApp",
-                      });
-                    }
-                  }}
                 >
                   <button className="h-12 cursor-pointer rounded-full bg-[#dbe3cf] px-7 text-sm font-medium text-[#1d2818] transition-all duration-200 hover:bg-[#eef4e8] active:scale-[0.99]">
                     Quero conhecer as condições exclusivas
@@ -625,21 +625,7 @@ export default function LandingPage() {
               Piscina, academia, espaço gourmet e áreas pensadas para viver —
               todos os dias.
             </p>
-            <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => {
-                if (window.fbq) window.fbq("track", "Lead");
-
-                if (window.gtag) {
-                  window.gtag("event", "conversion", {
-                    event_category: "WhatsApp",
-                    event_label: "Clique WhatsApp",
-                  });
-                }
-              }}
-            >
+            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
               <button className="mt-10 h-12 cursor-pointer rounded-full bg-[#dbe3cf] px-7 text-sm font-medium text-[#1d2818] transition-all duration-200 hover:bg-[#eef4e8] active:scale-[0.99]">
                 Falar com um especialista
               </button>
@@ -652,7 +638,7 @@ export default function LandingPage() {
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="relative rounded-[36px] border border-white/15 bg-white/10 backdrop-blur-xl p-3 md:p-5 shadow-[0_25px_100px_rgba(0,0,0,0.18)] ring-1 ring-white/10 overflow-hidden"
+            className="relative rounded-[36px] border border-white/15 bg-white/10 p-3 shadow-[0_25px_100px_rgba(0,0,0,0.18)] ring-1 ring-white/10 backdrop-blur-xl overflow-hidden md:p-5"
           >
             <div className="relative">
               {activeRooftop > 0 && (
@@ -792,7 +778,7 @@ export default function LandingPage() {
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeUp}
             transition={{ duration: 0.7 }}
-            className="rounded-[36px] border border-white/15 bg-[rgba(20,27,17,0.24)] backdrop-blur-md p-6 text-center shadow-[0_25px_100px_rgba(0,0,0,0.14)] md:p-16 relative overflow-hidden"
+            className="rounded-[36px] border border-white/15 bg-[rgba(20,27,17,0.24)] p-6 text-center shadow-[0_25px_100px_rgba(0,0,0,0.14)] backdrop-blur-md relative overflow-hidden md:p-16"
           >
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.25),transparent_40%)] opacity-40" />
             <p className="text-sm font-medium uppercase tracking-[0.22em] text-white/70">
@@ -928,8 +914,8 @@ export default function LandingPage() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-            <button className="inline-flex items-center whitespace-nowrap h-14 cursor-pointer rounded-full bg-[#2a3b23] px-6 text-sm font-medium text-white shadow-[0_18px_40px_rgba(29,40,24,0.28)] transition-all duration-200 hover:bg-[#22301d] active:scale-[0.99]">
-              <Phone className="mr-2 h-4 w-4" />
+            <button className="inline-flex h-14 cursor-pointer items-center whitespace-nowrap rounded-full bg-[#2a3b23] px-6 text-sm font-medium text-white shadow-[0_18px_40px_rgba(29,40,24,0.28)] transition-all duration-200 hover:bg-[#22301d] active:scale-[0.99]">
+              <WhatsAppIcon className="mr-2 h-4 w-4" />
               Falar com especialista
             </button>
           </a>
