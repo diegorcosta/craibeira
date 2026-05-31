@@ -201,7 +201,7 @@ export default function LandingPage() {
     gtag("config", "G-EBR1TT9KL4");
 
     // Google Ads
-    gtag("config", "AW-18175233945");
+    gtag("config", "AW-17974583838");
   }, []);
 
   return (
